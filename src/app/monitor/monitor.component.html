@@ -1,9 +1,21 @@
+<h2 class="example-h2">Monitor filter</h2>
+<section class="example-section">
+    <mat-checkbox class="example-margin" [checked]="passedTrainees" (change)="setAll($event.checked)">Passed
+    </mat-checkbox>
+    <mat-checkbox class="example-margin" [checked]="failedTrainees" (change)="setAll($event.checked)">Failed
+    </mat-checkbox>
+</section>
 
 <ag-grid-angular
         style="width: 90vw; height: 500px;"
         class="ag-theme-balham"
-        [rowData]="rowData"
+        [rowData]="trainees$| async"
         [columnDefs]="columnDefs"
         [rowClassRules]="rowClassRules"
 >
 </ag-grid-angular>
+<ul>nmbbmn
+    <li *ngFor="let l of trainees$| async">{{l.id}}, {{l.name}} , {{l.average}}
+        ,{{l.exams}}
+    </li>
+</ul>

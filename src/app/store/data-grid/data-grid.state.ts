@@ -6,6 +6,7 @@ import {
 } from "./data-grid.actions";
 import {patch, updateItem} from "@ngxs/store/operators";
 import {Injectable} from "@angular/core";
+import * as _ from "lodash";
 
 @State<TraineeStateModel>({
     name: 'trainee',
@@ -23,7 +24,12 @@ export class TraineeState {
         {id: '101', name: 'Sara', subject: 'EN', grade: 100, date: '02.02.2020'},
         {id: '102', name: 'Rut', subject: 'EN', grade: 80, date: '02.03.2020'},
         {id: '103', name: 'Gal', subject: 'EN', grade: 100, date: '02.04.2020'},
-        {id: '104', name: 'Tal', subject: 'History', grade: 80, date: '02.02.2020'}
+        {id: '104', name: 'Tal', subject: 'History', grade: 80, date: '02.02.2020'},
+        {id: '105', name: 'Shir', subject: 'History', grade: 60, date: '02.02.2020'},
+        {id: '105', name: 'Shir', subject: 'History', grade: 100, date: '02.02.2020'},
+        {id: '105', name: 'Shir', subject: 'History', grade: 55, date: '02.02.2020'},
+        {id: '105', name: 'Shir', subject: 'Mathe', grade: 100, date: '02.02.2020'},
+        {id: '106', name: 'Shira', subject: 'Geography', grade: 98, date: '02.02.2020'}
     ];
 
     @Selector()
@@ -32,13 +38,35 @@ export class TraineeState {
     }
 
     @Selector()
-    static getAveragesBySubject(state: TraineeStateModel) {
-        return state.trainees.filter(item => item.subject)
+    static getTraineesAverageAndExamsCnt(state: TraineeStateModel) {
+      return  _(state.trainees)
+            .groupBy('id')
+            .map((objs: any, key: any) => ({
+                'id': key,
+                'name': objs[0].name,
+                'average': _.sumBy(objs, 'grade') / objs.length ,
+                'exams': objs.length
+            })).value();
     }
 
     @Selector()
-    static subjects(state: TraineeStateModel) {
-        return state.trainees.filter(s => s.subject);
+    static getTraineeAverageById(state: TraineeStateModel) {
+        return  _(state.trainees)
+            .groupBy('id')
+            .map((objs: any, key: any) => ({
+                'id': key,
+                'name': objs[0].name,
+                'average': _.sumBy(objs, 'grade') / objs.length ,
+            })).value();
+    }
+    @Selector()
+    static getGradeAveragePerSubject(state: TraineeStateModel) {
+        return  _(state.trainees)
+            .groupBy('subject')
+            .map((objs: any, key: any) => ({
+                'subject': key,
+                'average': _.sumBy(objs, 'grade') / objs.length ,
+            })).value();
     }
 
     @Action(GetAllTrainees)
@@ -60,8 +88,8 @@ export class TraineeState {
     }
 
     @Action(GetAveragesBySubject)
-    getAveragesBySubject({getState, patchState}: StateContext<TraineeStateModel>,
-                         {payload}: GetAveragesBySubject) {
+    getTraineesAverageAndExamsCnt({getState, patchState}: StateContext<TraineeStateModel>,
+                                  {payload}: GetAveragesBySubject) {
         patchState({
             trainees: getState().trainees.map(a => a.subject != payload)
         })
@@ -85,7 +113,6 @@ export class TraineeState {
 
     @Action(FilterTraineesByTxt)
     filterByTxt({getState, patchState}: StateContext<TraineeStateModel>, {payload}: FilterTraineesByTxt) {
-        console.log(payload, 'payoad')
         const filterKey = payload[0], filterValue = payload[1];
         patchState({
             trainees: getState().trainees.filter(a => a[filterKey] === filterValue)

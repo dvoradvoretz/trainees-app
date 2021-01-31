@@ -1,8 +1,10 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {Color, Label} from "ng2-charts";
 import {ChartDataSets, ChartOptions, ChartType} from 'chart';
-import {Store} from "@ngxs/store";
+import {Select, Store} from "@ngxs/store";
+import {TraineeState} from "../store/data-grid/data-grid.state";
+import {Observable} from "rxjs/index";
 
 @Component({
     selector: 'app-analysis',
@@ -12,40 +14,35 @@ import {Store} from "@ngxs/store";
 
 })
 export class AnalysisComponent implements OnInit {
-
-    public barChartOptions: ChartOptions = {
+    barChartOptions: ChartOptions = {
         responsive: true,
     };
-    public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-
-    public barChartType: ChartType = 'bar';
-    public chartLegend = true;
-    public chartPlugins = [];
-
-    public barChartData: ChartDataSets[] = [
-        {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-        {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+    barChartLabels: Label[] = [];
+    barChartType: ChartType = 'bar';
+    chartLegend = true;
+    chartPlugins = [];
+    barChartData = [
+        {data: [], label: 'Average'}];
+    lineChartData = [
+        {data: [], label: 'Grade'},
     ];
-    public lineChartData: ChartDataSets[] = [
-        {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    ];
-    public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-    public lineChartOptions: (ChartOptions & { annotation: any }) = {
+    lineChartLabels = [];
+    lineChartOptions: (ChartOptions & { annotation: any }) = {
         responsive: true,
     };
-    public lineChartColors: Color[] = [
+    lineChartColors: Color[] = [
         {
             borderColor: 'black',
             backgroundColor: 'rgba(255,0,0,0.3)',
         },
     ];
-    public barChartColors: Color[] = [
+    barChartColors: Color[] = [
         {
             borderColor: 'black',
             backgroundColor: 'rgba(255,0,0,0.3)',
         },
     ];
-    public lineChartType = 'line';
+    lineChartType = 'line';
     charts = [
         {
             title: 'Grades average per subject',
@@ -70,10 +67,29 @@ export class AnalysisComponent implements OnInit {
         }
     ];
 
+    @Select(TraineeState.getGradeAveragePerSubject) gradeAveragePerSubject: Observable<any[]>;
+    @Select(TraineeState.getTraineeAverageById) traineeAverageById: Observable<any[]>;
+
     constructor(private store: Store) {
+        this.gradeAveragePerSubject.subscribe((val: any) => {
+            const label_data = val.map((item: any) => item.subject);
+            this.lineChartData[0].data.length = 0;
+            this.lineChartData[0].data = [...val.map(item => item.average)];
+            this.lineChartLabels.length = 0;
+            this.lineChartLabels.push(...label_data);
+        });
+        this.traineeAverageById.subscribe(val => {
+            const label_data = val.map((item: any) => item.id);
+            this.barChartData[0].data.length = 0;
+            this.barChartData[0].data = [...val.map(item => item.average)];
+            this.barChartLabels.length = 0;
+            this.barChartLabels.push(...label_data);
+        })
     };
 
+
     ngOnInit(): void {
+
     }
 
     drop(event: CdkDragDrop<string[]>) {
