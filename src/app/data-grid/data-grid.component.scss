@@ -1,0 +1,17 @@
+.filter-container{
+  label{
+
+  }
+}
+.grid-container{
+  display: flex;
+  flex-direction: row;
+  ag-grid-angular{
+    width: 70%;
+  }
+  .details-panel{
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;;
+  }
+}

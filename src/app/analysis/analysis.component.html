@@ -1,0 +1,17 @@
+<div cdkDropList
+     cdkDropListOrientation="horizontal"
+     class="example-list"
+     (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let chart of charts" cdkDrag>
+        <h2 class="chart-title">{{chart.title}}</h2>
+        <canvas baseChart
+                [datasets]="chart.datasets"
+                [labels]="chart.labels"
+                [options]="chart.options"
+                [colors]="chart.colors"
+                [legend]="chart.legend"
+                [chartType]="chart.chartType"
+                [plugins]="chart.plugins">
+        </canvas>
+    </div>
+</div>

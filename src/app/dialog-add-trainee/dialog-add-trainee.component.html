@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Please type trainee details </h1>
+<mat-divider></mat-divider>
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="id">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>name</mat-label>
+        <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>date</mat-label>
+        <input type="date" matInput formControlName="date">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>grade</mat-label>
+        <input matInput formControlName="grade">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>subject</mat-label>
+        <input matInput formControlName="subject">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button type="submit">Add</button>
+</div>
+</form>
