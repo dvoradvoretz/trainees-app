@@ -1,14 +1,20 @@
 # TrainessApp
-![alt text](./src/assets/images/data%20screen.JPG)
-
 Trainees application - build on angular  version 11.0.2, 
 using typescript, angular material, ag-grid, NGXS, charts.js and lodash.
 The app contains 3 screens:
 # Data screen
+
 Shows grid of trainees data. Users can add, delete , filter and edit the data.
+
+![alt text](./src/assets/images/data%20screen.JPG)
+
 # Analysis screen
+
 Shows trainees data in different charts. Charts can be drag and drop.
+![alt text](./src/assets/images/dynamicChrat.JPG)
+
 # Monitor screen
+
 Shows list of failed and passed trainees. Users can filter the list by id's, names, and checkbox for Failed  / passed status.
 ## Development server
 

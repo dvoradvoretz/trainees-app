@@ -20,20 +20,20 @@ import * as _ from "lodash";
 @Injectable()
 export class TraineeState {
     trainees = [
-        {id: '100', name: 'Yael', subject: 'EN', grade: 82, date: '02.01.2020'},
-        {id: '100', name: 'Yael', subject: 'EN', grade: 80, date: '02.01.2020'},
-        {id: '101', name: 'Sara', subject: 'EN', grade: 89, date: '02.02.2020'},
-        {id: '101', name: 'Sara', subject: 'EN', grade: 100, date: '02.02.2020'},
-        {id: '102', name: 'Rut', subject: 'EN', grade: 80, date: '02.03.2020'},
-        {id: '103', name: 'Gal', subject: 'EN', grade: 100, date: '02.04.2020'},
+        {id: '100', name: 'Yael', subject: 'English', grade: 82, date: '02.01.2020'},
+        {id: '100', name: 'Yael', subject: 'English', grade: 80, date: '02.01.2020'},
+        {id: '101', name: 'Sara', subject: 'English', grade: 89, date: '02.02.2020'},
+        {id: '101', name: 'Sara', subject: 'English', grade: 100, date: '02.02.2020'},
+        {id: '102', name: 'Rut', subject: 'English', grade: 80, date: '02.03.2020'},
+        {id: '103', name: 'Gal', subject: 'English', grade: 100, date: '02.04.2020'},
         {id: '104', name: 'Tal', subject: 'History', grade: 80, date: '02.02.2020'},
         {id: '105', name: 'Shir', subject: 'History', grade: 60, date: '02.02.2020'},
         {id: '105', name: 'Shir', subject: 'History', grade: 100, date: '02.02.2020'},
         {id: '105', name: 'Shir', subject: 'History', grade: 55, date: '02.02.2020'},
-        {id: '105', name: 'Shir', subject: 'Mathe', grade: 100, date: '02.02.2020'},
-        {id: '106', name: 'Shira', subject: 'Geography', grade: 98, date: '02.02.2020'},
-        {id: '107', name: 'Avital', subject: 'Geography', grade: 50, date: '02.02.2020'},
-        {id: '108', name: 'Avishag', subject: 'Geography', grade: 60, date: '02.02.2020'}
+        {id: '105', name: 'Shir', subject: 'Sciences', grade: 100, date: '02.02.2020'},
+        {id: '106', name: 'Shira', subject: 'Sciences', grade: 98, date: '02.02.2020'},
+        {id: '107', name: 'Avital', subject: 'Geography', grade: 80, date: '02.02.2020'},
+        {id: '108', name: 'Avishag', subject: 'Geography', grade: 100, date: '02.02.2020'}
     ];
 
     @Selector()
