@@ -5,11 +5,11 @@ import {Select, Store} from '@ngxs/store';
 import {MatDialog} from "@angular/material/dialog";
 import {Trainee} from "../models/trainee.model";
 import {DialogAddTraineeComponent} from "../dialog-add-trainee/dialog-add-trainee.component";
-import {TraineeState} from "../store/data-grid/data-grid.state";
+import {TraineeState} from "../store/trainees/trainees.state";
 import {
     AddTrainee, EditTrainee, FilterTraineesByTxt, GetAllTrainees,
     RemoveTrainee
-} from "../store/data-grid/data-grid.actions";
+} from "../store/trainees/trainees.actions";
 
 @Component({
     selector: 'app-data-grid',

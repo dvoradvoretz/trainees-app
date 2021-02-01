@@ -3,12 +3,12 @@ import {Trainee, TraineeStateModel} from "../../models/trainee.model";
 import {
     AddTrainee, EditTrainee, FilterTraineesByRange, FilterTraineesByTxt, GetAllTrainees, GetAveragesBySubject,
     GetPassedAndFailedTrainees,
-    GetGradeAveragePerSubject, GetTraineesAverageAndExamsCnt,
     RemoveTrainee
-} from "./data-grid.actions";
+} from "./trainees.actions";
 import {patch, updateItem} from "@ngxs/store/operators";
 import {Injectable} from "@angular/core";
 import * as _ from "lodash";
+import {failed, passed} from "../../monitor/monitor.component";
 
 @State<TraineeStateModel>({
     name: 'trainee',
@@ -132,14 +132,14 @@ export class TraineeState {
     getFailedTraineesAverageAndExamsCnt({getState, patchState}: StateContext<TraineeStateModel>,
                                         {payload}: GetPassedAndFailedTrainees) {
         switch (payload) {
-            case 64: {
+            case failed: {
                 patchState({
                     trainees: getState().trainees.filter(
                         a => a.grade <= payload)
                 })
             }
                 break;
-            case 65: {
+            case passed: {
                 patchState({
                     trainees: getState().trainees.filter(
                         a => a.grade >= payload)
@@ -154,11 +154,5 @@ export class TraineeState {
         }
     }
 
-    @Action(GetGradeAveragePerSubject)
-    getGradeAveragePerSubject({getState, patchState}: StateContext<TraineeStateModel>,
-                                  {payload}: GetGradeAveragePerSubject) {
-        console.log(payload , 'payload')
-
-    }
 }
 

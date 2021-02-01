@@ -1,8 +1,10 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {Select, Store} from "@ngxs/store";
-import {TraineeState} from "../store/data-grid/data-grid.state";
+import {TraineeState} from "../store/trainees/trainees.state";
 import {Observable} from "rxjs/index";
-import {GetPassedAndFailedTrainees} from "../store/data-grid/data-grid.actions";
+import {GetPassedAndFailedTrainees} from "../store/trainees/trainees.actions";
+
+export const failed = 64, passed = 65;
 
 export interface Task {
     name: string;
@@ -72,11 +74,11 @@ export class MonitorComponent {
         if (!completed) {
             switch (param) {
                 case 'Failed': {
-                    this.store.dispatch(new GetPassedAndFailedTrainees(65));
+                    this.store.dispatch(new GetPassedAndFailedTrainees(passed));
                 }
                     break;
                 case 'Passed': {
-                    this.store.dispatch(new GetPassedAndFailedTrainees(64));
+                    this.store.dispatch(new GetPassedAndFailedTrainees(failed));
                 }
                     break;
             }

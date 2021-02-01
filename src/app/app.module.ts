@@ -20,7 +20,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
 import {ChartsModule} from "ng2-charts";
 import { DialogAddTraineeComponent } from './dialog-add-trainee/dialog-add-trainee.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import {TraineeState} from "./store/data-grid/data-grid.state";
+import {TraineeState} from "./store/trainees/trainees.state";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSelectModule} from "@angular/material/select";
 

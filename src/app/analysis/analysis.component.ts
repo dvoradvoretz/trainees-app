@@ -4,9 +4,9 @@ import {Color, Label} from "ng2-charts";
 import {ChartDataSets, ChartOptions, ChartType} from 'chart';
 import {Select, Store} from "@ngxs/store";
 import {Observable} from "rxjs/index";
-import {TraineeState} from "../store/data-grid/data-grid.state";
+import {TraineeState} from "../store/trainees/trainees.state";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {GetGradeAveragePerSubject} from "../store/data-grid/data-grid.actions";
+import {GetGradeAveragePerSubject} from "../store/trainees/trainees.actions";
 
 @Component({
     selector: 'app-analysis',
