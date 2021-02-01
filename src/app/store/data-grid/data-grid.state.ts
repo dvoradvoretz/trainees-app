@@ -32,7 +32,7 @@ export class TraineeState {
         {id: '105', name: 'Shir', subject: 'History', grade: 55, date: '02.02.2020'},
         {id: '105', name: 'Shir', subject: 'Sciences', grade: 100, date: '02.02.2020'},
         {id: '106', name: 'Shira', subject: 'Sciences', grade: 98, date: '02.02.2020'},
-        {id: '107', name: 'Avital', subject: 'Geography', grade: 80, date: '02.02.2020'},
+        {id: '107', name: 'Avital', subject: 'Geography', grade: 52, date: '02.02.2020'},
         {id: '108', name: 'Avishag', subject: 'Geography', grade: 100, date: '02.02.2020'}
     ];
 

@@ -16,6 +16,9 @@ Shows trainees data in different charts. Charts can be drag and drop.
 # Monitor screen
 
 Shows list of failed and passed trainees. Users can filter the list by id's, names, and checkbox for Failed  / passed status.
+![alt text](./src/assets/images/monitorScreen.JPG)
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

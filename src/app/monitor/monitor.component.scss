@@ -5,3 +5,10 @@
 .ag-row.high-average {
 background-color: #00ffa957;
 }
+.filter-section{
+  display: inline-block;
+  margin: 10px 0px;
+  mat-checkbox {
+    margin: 0 13px;
+  }
+}
