@@ -5,6 +5,8 @@ import {ChartDataSets, ChartOptions, ChartType} from 'chart';
 import {Select, Store} from "@ngxs/store";
 import {Observable} from "rxjs/index";
 import {TraineeState} from "../store/data-grid/data-grid.state";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {GetGradeAveragePerSubject} from "../store/data-grid/data-grid.actions";
 
 @Component({
     selector: 'app-analysis',
@@ -52,17 +54,26 @@ export class AnalysisComponent {
 
         }
     ];
-
+    filterForm: FormGroup;
+    subjectsList: string[] = [];
+    ids: string[] = [];
     @Select(TraineeState.getGradeAveragePerSubject) gradeAveragePerSubject$: Observable<any[]>;
     @Select(TraineeState.getTraineeAverageById) traineeAverageById$: Observable<any[]>;
 
-    constructor(private store: Store) {
+    constructor(private store: Store,
+                private formBuilder: FormBuilder) {
+        this.filterForm = this.formBuilder.group({
+            subjects: '',
+            ids: ''
+        });
         this.gradeAveragePerSubject$.subscribe((data: any) => {
+
             const label_data = data.map((item: any) => item.subject);
             this.lineChartData[0].data.length = 0;
             this.lineChartData[0].data = [...data.map(item => item.average)];
             this.lineChartLabels.length = 0;
             this.lineChartLabels.push(...label_data);
+            this.subjectsList = label_data;
         });
         this.traineeAverageById$.subscribe(data => {
             const label_data = data.map((item: any) => item.id);
@@ -70,10 +81,17 @@ export class AnalysisComponent {
             this.barChartData[0].data = [...data.map(item => item.average)];
             this.barChartLabels.length = 0;
             this.barChartLabels.push(...label_data);
+            this.ids = label_data;
         })
     };
 
     drop(event: CdkDragDrop<string[]>) {
         moveItemInArray(this.charts, event.previousIndex, event.currentIndex);
+    }
+
+    submit() {
+        const filterParameters:any = [this.filterForm.controls['ids'].value,
+            this.filterForm.controls['subjects'].value];
+        //TODO: add filter functionality
     }
 }

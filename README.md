@@ -11,7 +11,7 @@ Shows grid of trainees data. Users can add, delete , filter and edit the data.
 # Analysis screen
 
 Shows trainees data in different charts. Charts can be drag and drop.
-![alt text](./src/assets/images/dynamicChrat.JPG)
+![alt text](./src/assets/images/analysisFilters.JPG)
 
 # Monitor screen
 

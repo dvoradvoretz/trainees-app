@@ -1,3 +1,23 @@
+
+<div class="analysis-filter">
+    <form [formGroup]="filterForm" (ngSubmit)="submit()">
+    <mat-form-field appearance="fill">
+        <mat-label>Subjects</mat-label>
+        <mat-select formControlName="subjects" multiple>
+            <mat-option *ngFor="let subject of subjectsList" [value]="subject">
+                {{subject}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Ids</mat-label>
+            <mat-select formControlName="ids" multiple>
+                <mat-option *ngFor="let traineeID of ids" [value]="traineeID">
+                    {{traineeID}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-button type="submit">Filter</button>
+    </form>
+</div>
 <div cdkDropList
      cdkDropListOrientation="horizontal"
      class="example-list"

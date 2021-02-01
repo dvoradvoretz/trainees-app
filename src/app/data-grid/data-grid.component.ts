@@ -73,18 +73,18 @@ export class DataGridComponent implements OnInit {
     filterGrid(event: any) {
         this.store.dispatch(new GetAllTrainees()); // reset filter
         // split keywords and its value. exam: id:101 will be: {id , 101} as a parameter for the data filter
+        // keyword can be every row header and value after the ':' chat can be every value. (id,, name, grade, etc...)
         const keyValue = event.target.value.split(':', 2);
         this.store.dispatch(new FilterTraineesByTxt(keyValue));
+        //TODO: add support for > < filter in this input to replace the already existing ag-grid filter for ><
     }
 
     columnDefs = [
         {headerName: 'ID', field: 'id', editable: true},
         {headerName: 'Name', field: 'name', editable: true},
-        {headerName: 'Date', field: 'date', editable: true},
-        {
-            headerName: 'Grade', field: 'grade', editable: true,
-            filter: 'agNumberColumnFilter'
-        },
+        {headerName: 'Date', field: 'date', editable: true ,  filter: 'agNumberColumnFilter'},
+        {headerName: 'Grade', field: 'grade', editable: true,
+            filter: 'agNumberColumnFilter'},
         {headerName: 'Subject', field: 'subject', editable: true}
     ];
 

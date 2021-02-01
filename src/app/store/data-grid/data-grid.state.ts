@@ -154,12 +154,11 @@ export class TraineeState {
         }
     }
 
-    // @Action(GetGradeAveragePerSubject)
-    // getGradeAveragePerSubject({getState, patchState}: StateContext<TraineeStateModel>,
-    //                               {payload}: GetGradeAveragePerSubject) {
-    //     patchState({
-    //         trainees: getState().trainees.map(a => a.subject != payload)
-    //     })
-    // }
+    @Action(GetGradeAveragePerSubject)
+    getGradeAveragePerSubject({getState, patchState}: StateContext<TraineeStateModel>,
+                                  {payload}: GetGradeAveragePerSubject) {
+        console.log(payload , 'payload')
+
+    }
 }
 

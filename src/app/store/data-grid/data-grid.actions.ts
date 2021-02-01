@@ -47,7 +47,7 @@ export class GetPassedAndFailedTrainees {
 }
 
 export class GetGradeAveragePerSubject {
-    static readonly type = '[Analysis Averages] GetAveragesBySubject';
+    static readonly type = '[Analysis Averages] GetAverages By Ids and Subjects';
 
     constructor(public payload: any) {
     }

@@ -22,6 +22,7 @@ import { DialogAddTraineeComponent } from './dialog-add-trainee/dialog-add-train
 import {ReactiveFormsModule} from "@angular/forms";
 import {TraineeState} from "./store/data-grid/data-grid.state";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
         MatFormFieldModule,
         MatInputModule,
         MatDialogModule,
+        MatSelectModule,
         MatCheckboxModule,
         DragDropModule,
         ChartsModule,
