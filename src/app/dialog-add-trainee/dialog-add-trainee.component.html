@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Please type trainee details </h1>
 <mat-divider></mat-divider>
-<form [formGroup]="form" (ngSubmit)="submit(form)">
+<form [formGroup]="editTraineeForm" (ngSubmit)="submit(editTraineeForm)">
 <div mat-dialog-content>
     <mat-form-field>
         <mat-label>ID</mat-label>
@@ -16,7 +16,7 @@
     </mat-form-field>
     <mat-form-field>
         <mat-label>grade</mat-label>
-        <input matInput formControlName="grade">
+        <input matInput formControlName="grade" type="number">
     </mat-form-field>
     <mat-form-field>
         <mat-label>subject</mat-label>

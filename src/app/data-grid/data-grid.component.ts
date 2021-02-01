@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Observable} from "rxjs/index";
 import {Select, Store} from '@ngxs/store';
 import {MatDialog} from "@angular/material/dialog";
 import {Trainee} from "../models/trainee.model";
-import {Observable} from "rxjs/index";
 import {DialogAddTraineeComponent} from "../dialog-add-trainee/dialog-add-trainee.component";
 import {TraineeState} from "../store/data-grid/data-grid.state";
 import {
     AddTrainee, EditTrainee, FilterTraineesByTxt, GetAllTrainees,
     RemoveTrainee
 } from "../store/data-grid/data-grid.actions";
-import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
     selector: 'app-data-grid',
@@ -18,14 +18,9 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 
 export class DataGridComponent implements OnInit {
-    rowSelection = 'single';
-    id: string;
-    name: string;
-    subject: string;
-    grade: number;
-    date: string;
-    selectedTrainee: Trainee;
-    form: FormGroup;
+    rowSelection = 'single'; // configure data grid row selection
+    selectedTrainee: Trainee; // selected row (trainee)
+    editTraineeForm: FormGroup;
 
 
     @Select(TraineeState.getAllTrainees) trainees$: Observable<Trainee[]>;
@@ -39,7 +34,7 @@ export class DataGridComponent implements OnInit {
     onRowSelected(event: any) {
         if (event.node.selected) {
             this.selectedTrainee = event.node.data;
-            this.form = this.formBuilder.group({
+            this.editTraineeForm = this.formBuilder.group({
                 id: this.selectedTrainee.id,
                 name: this.selectedTrainee.name,
                 subject: this.selectedTrainee.subject,
@@ -77,7 +72,8 @@ export class DataGridComponent implements OnInit {
 
     filterGrid(event: any) {
         this.store.dispatch(new GetAllTrainees()); // reset filter
-        const keyValue = event.target.value.split(':' ,2);
+        // split keywords and its value. exam: id:101 will be: {id , 101} as a parameter for the data filter
+        const keyValue = event.target.value.split(':', 2);
         this.store.dispatch(new FilterTraineesByTxt(keyValue));
     }
 

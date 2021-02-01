@@ -1,32 +1,17 @@
- <div cdkDropList
-         cdkDropListOrientation="horizontal"
-         class="example-list"
-         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let chart of charts" cdkDrag >
-            <h2 class="chart-title">{{chart.title}}</h2>
-            <canvas baseChart
-                    [datasets]="chart.datasets"
-                    [labels]="chart.labels"
-                    [options]="chart.options"
-                    [colors]="chart.colors"
-                    [legend]="chart.legend"
-                    [chartType]="chart.chartType"
-                    [plugins]="chart.plugins">
-            </canvas>
-            <!--<canvas baseChart-->
-            <!--[datasets]="chart.datasets"-->
-            <!--[labels]="chart.labels"-->
-            <!--[options]="chart.options"-->
-            <!--[colors]="chart.colors"-->
-            <!--[legend]="chart.legend"-->
-            <!--[chartType]="chart.chartType"-->
-            <!--[plugins]="chart.plugins">-->
-            <!--</canvas>-->
-        </div>
+<div cdkDropList
+     cdkDropListOrientation="horizontal"
+     class="example-list"
+     (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let chart of charts" cdkDrag>
+        <h2 class="chart-title">{{chart.title}}</h2>
+        <canvas baseChart
+                [datasets]="chart.datasets"
+                [labels]="chart.labels"
+                [options]="chart.options"
+                [colors]="chart.colors"
+                [legend]="chart.legend"
+                [chartType]="chart.chartType"
+                [plugins]="chart.plugins">
+        </canvas>
     </div>
-    <ul> {{charts.length}}
-        <li *ngFor="let l of gradeAveragePerSubject| async">{{l.subject}} = {{l.average}}
-        </li>
-        <li *ngFor="let l of traineeAverageById| async">{{l.id}} = {{l.average}}
-        </li>
-    </ul>
+</div>

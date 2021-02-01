@@ -12,6 +12,12 @@
   .details-panel{
     width: 30%;
     margin: 0 auto;
-    text-align: center;;
+    text-align: center;
+    form{
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+      margin: 0 auto;
+    }
   }
 }

@@ -19,7 +19,7 @@ export class DialogAddTraineeComponent implements OnInit {
             id: '',
             name: '',
             subject: '',
-            grade: '',
+            grade: 0,
             date: ''
         })
     }
